@@ -34,20 +34,40 @@ It connects to the **FastAPI backend** for authentication, chatting with persona
 ## 📂 Project Structure
 
 ```
-chat-frontend/
-│── app.py                     # Streamlit entrypoint
-│── core/
-│   ├── api.py                 # Backend client (REST calls)
-│   ├── config.py              # Config (API URL, personas, defaults)
-│── pages/
-│   ├── chat_page.py           # Chat interface
-│   ├── analytics_page.py      # Analytics dashboard
-│   └── login_page.py          # Login form
-│── ui/
-│   ├── sidebar.py             # Sidebar controls (persona, settings)
-│   └── components.py          # UI components (chat bubbles, etc.)
-│── requirements.txt
-│── README.md                  # (this file)
+CHAT-FRONTEND/
+│── .devcontainer/            # Dev container settings (VS Code Remote Containers)
+│
+│── .streamlit/               # Streamlit configuration
+│   ├── config.toml           # Streamlit UI & theme settings
+│   └── secrets.toml          # API keys / secrets (not in Git)
+│
+│── .venv/                    # Python virtual environment (ignored in Git)
+│── .vscode/                  # VS Code workspace configs
+│
+│── streamlit_app/            # Auto-generated cache from Streamlit
+│   └── __pycache__/          # Compiled Python bytecode
+│
+│── core/                     # Core application logic
+│   ├── __init__.py
+│   ├── api.py                # Handles requests to backend API
+│   ├── config.py             # Global configs (API base URL, personas)
+│   └── state.py              # Session state management
+│
+│── ui/                       # UI rendering components/pages
+│   ├── __init__.py
+│   ├── analytics_page.py     # Analytics dashboard page
+│   ├── auth.py               # Login & authentication UI
+│   ├── chat_page.py          # Chat interface (bubbles, messages)
+│   ├── components.py         # Reusable UI components
+│   └── sidebar.py            # Sidebar navigation / persona switcher
+│
+│── app.py                    # Main entry point for Streamlit app
+│── .env                      # Environment variables (backend URL etc.)
+│── .gitignore                # Ignored files for Git
+│── Dockerfile                # Containerization for frontend
+│── README.md                 # Documentation
+│── requirements.txt          # Python dependencies
+
 ```
 
 ---
