@@ -24,15 +24,22 @@ def render():
     user_input = st.chat_input("Type your message...")
     if user_input:
         try:
-            data = client.chat(
-                user_input,
-                st.session_state.persona,
-                current_history,
-                st.session_state.temperature,
-                st.session_state.token,
-            )
+            # add user message immediately
             current_history.append({"role": "user", "content": user_input})
+
+            # show "thinking..." while waiting
+            with st.spinner("🤔 Thinking..."):
+                data = client.chat(
+                    user_input,
+                    st.session_state.persona,
+                    current_history,
+                    st.session_state.temperature,
+                    st.session_state.token,
+                )
+
+            # replace thinking with real reply
             current_history.append({"role": "assistant", "content": data["reply"]})
             st.rerun()
+
         except Exception as e:
             st.error(f"⚠️ Chat error: {e}")
