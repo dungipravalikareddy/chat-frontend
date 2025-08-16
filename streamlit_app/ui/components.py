@@ -1,7 +1,13 @@
 import streamlit as st
-from typing import List, Dict
 
-def chat_window(history: List[Dict[str, str]]):
-    for m in history:
-        with st.chat_message(m["role"]):
-            st.markdown(m["content"])
+def chat_bubble(msg):
+    if msg["role"] == "user":
+        st.markdown(
+            f"<div style='text-align:right; background:#DCF8C6; padding:8px; border-radius:10px; margin:4px;'>{msg['content']}</div>",
+            unsafe_allow_html=True
+        )
+    else:
+        st.markdown(
+            f"<div style='text-align:left; background:#F1F0F0; padding:8px; border-radius:10px; margin:4px;'>{msg['content']}</div>",
+            unsafe_allow_html=True
+        )
